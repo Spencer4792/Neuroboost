@@ -71,30 +71,25 @@
             padding: 80px 40px 100px;
             background-color: #f5e6dc;
             position: relative;
+            background-image: url('images/children-group.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .hero::before {
             content: '';
             position: absolute;
             left: 0;
+            top: 0;
+            right: 0;
             bottom: 0;
-            width: 200px;
-            height: 400px;
-            background-color: #7dc97d;
-            border-radius: 0 200px 0 0;
-            opacity: 0.6;
+            background-color: rgba(245, 230, 220, 0.35);
+            z-index: 0;
         }
 
         .hero::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 100px;
-            width: 250px;
-            height: 250px;
-            background-color: #f5d14a;
-            border-radius: 50%;
-            opacity: 0.4;
+            display: none;
         }
 
         .hero-content {
@@ -103,12 +98,13 @@
         }
 
         .hero h1 {
-            font-size: 68px;
-            color: rgba(255, 140, 66, 0.25);
+            font-size: 64px;
+            color: #333;
             margin-bottom: 50px;
             line-height: 1.3;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
         }
 
         .hero-description {
@@ -206,7 +202,7 @@
     
     <div class="hero">
         <div class="hero-content">
-            <h1>Every Child Deserves an<br>Education Adapted to Them.</h1>
+            <h1>Every Child Deserves an<br>Education Adapted to Them</h1>
             <div class="hero-description">
                 Our supplemental learning software is based on the most recent research into child development and neurodivergence. We provide resources for parents, teachers, and their children: specialized through an initial assessment. At any point in your Neuroboost journey, parents are welcome to switch things up and explore our other materials if you realize something new about your child's needs.
             </div>
@@ -216,7 +212,7 @@
 
     <div class="mission-section">
         <div class="mission-card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='180'%3E%3Crect fill='%23e8d5c4' width='240' height='180'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%23999'%3EStudents%3C/text%3E%3C/svg%3E" alt="Mission">
+            <img src="images/classroom-teacher.jpg" alt="Teacher with diverse students in an inclusive classroom">
             <div class="mission-content">
                 <h2>OUR MISSION</h2>
                 <p>We aim to create resources for every type of student, whatever their individual needs. We research and study all the categories of neurodivergence, to make sure we provide specialized and appropriate resources for your kids, whatever their unique struggles.</p>
@@ -225,7 +221,7 @@
         </div>
 
         <div class="mission-card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='180'%3E%3Crect fill='%23d4c5b8' width='240' height='180'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%23999'%3EClassroom%3C/text%3E%3C/svg%3E" alt="Research">
+            <img src="images/student-learning.jpg" alt="Student smiling while learning in classroom">
             <div class="mission-content">
                 <h2>OUR RESEARCH</h2>
                 <p>We portion 30% of all profit towards neurodivergence and child development research. We know that there is still much to know about the human brain and best approaches to child education. We strive to lead the industry in inclusivity. Every child deserves an education adapted to them.</p>
