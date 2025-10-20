@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroboost - Foreign Language Courses</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5e6dc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff8c42 0%, #ff8c42 50%, #5dd3d9 50%, #5dd3d9 100%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+            z-index: 100;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .logo {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 10px 25px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 30px;
+            letter-spacing: 1px;
+        }
+
+        .logo-bg {
+            position: absolute;
+            left: -30px;
+            top: -25px;
+            width: 100px;
+            height: 100px;
+            background-color: #ff8c42;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        nav a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #5dd3d9;
+        }
+
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+            position: relative;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 50px 80px 150px;
+            margin-right: 300px;
+        }
+
+        .back-button {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(93, 211, 217, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .back-button:hover {
+            background-color: #4ac4ca;
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .course-card {
+            background-color: #e8d5c4;
+            padding: 45px 50px;
+            margin-bottom: 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .course-card.selected {
+            background-color: #d4c5b8;
+            border: 3px solid #5dd3d9;
+        }
+
+        .course-card h2 {
+            font-size: 38px;
+            margin-bottom: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .course-card p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .selected-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: #b8e6e8;
+            padding: 120px 30px 40px;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.05);
+            overflow-y: auto;
+            z-index: 5;
+        }
+
+        .selected-sidebar h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .selected-course-item {
+            background-color: white;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .empty-message {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .next-button {
+            position: fixed;
+            bottom: 50px;
+            right: 350px;
+            background-color: #5dd3d9;
+            color: white;
+            padding: 20px 70px;
+            border: none;
+            border-radius: 50px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(93, 211, 217, 0.4);
+            transition: background-color 0.3s, transform 0.2s;
+            z-index: 10;
+        }
+
+        .next-button:hover {
+            background-color: #4ac4ca;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <div class="logo-bg"></div>
+            <div class="logo">NEUROBOOST</div>
+        </div>
+        <nav>
+            <a href="about.html">About Us</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <div class="content-area">
+            <button class="back-button" onclick="window.location.href='subjects.html'">Back</button>
+            
+            <h1>Available Foreign Language Courses</h1>
+
+            <div class="course-card" data-course="Spanish" onclick="toggleCourse(this)">
+                <h2>Spanish</h2>
+                <p>Learn to speak, read, and write Spanish. Explore Hispanic cultures while building vocabulary and grammar skills through interactive lessons.</p>
+            </div>
+
+            <div class="course-card" data-course="French" onclick="toggleCourse(this)">
+                <h2>French</h2>
+                <p>Master French pronunciation, grammar, and conversation. Discover Francophone cultures and traditions around the world.</p>
+            </div>
+
+            <div class="course-card" data-course="Mandarin Chinese" onclick="toggleCourse(this)">
+                <h2>Mandarin Chinese</h2>
+                <p>Study the most spoken language in the world. Learn characters, tones, and conversational Mandarin while exploring Chinese culture.</p>
+            </div>
+
+            <div class="course-card" data-course="German" onclick="toggleCourse(this)">
+                <h2>German</h2>
+                <p>Build German language skills through systematic study of grammar, vocabulary, and authentic cultural materials.</p>
+            </div>
+
+            <div class="course-card" data-course="Japanese" onclick="toggleCourse(this)">
+                <h2>Japanese</h2>
+                <p>Learn hiragana, katakana, and kanji. Develop conversational skills and understanding of Japanese customs and etiquette.</p>
+            </div>
+
+            <div class="course-card" data-course="Italian" onclick="toggleCourse(this)">
+                <h2>Italian</h2>
+                <p>Experience the beauty of Italian language and culture. Learn to communicate while exploring art, music, and cuisine.</p>
+            </div>
+
+            <div class="course-card" data-course="Latin" onclick="toggleCourse(this)">
+                <h2>Latin</h2>
+                <p>Study the foundation of Romance languages. Improve English vocabulary and explore ancient Roman civilization.</p>
+            </div>
+        </div>
+
+        <div class="selected-sidebar">
+            <h3>Selected Courses</h3>
+            <div id="selected-courses-list">
+                <div class="empty-message">No courses selected yet</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="next-button" onclick="window.location.href='assessment.html'">Next</button>
+
+    <script>
+        let selectedCourses = [];
+
+        function toggleCourse(card) {
+            const courseName = card.getAttribute('data-course');
+            
+            if (card.classList.contains('selected')) {
+                card.classList.remove('selected');
+                selectedCourses = selectedCourses.filter(c => c !== courseName);
+            } else {
+                card.classList.add('selected');
+                if (!selectedCourses.includes(courseName)) {
+                    selectedCourses.push(courseName);
+                }
+            }
+            
+            updateSelectedList();
+        }
+
+        function updateSelectedList() {
+            const listElement = document.getElementById('selected-courses-list');
+            if (selectedCourses.length === 0) {
+                listElement.innerHTML = '<div class="empty-message">No courses selected yet</div>';
+            } else {
+                listElement.innerHTML = selectedCourses.map(course => 
+                    `<div class="selected-course-item">${course}</div>`
+                ).join('');
+            }
+        }
+    </script>
+</body>
+</html>

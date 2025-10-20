@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroboost - Calculated Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5e6dc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff8c42 0%, #ff8c42 50%, #5dd3d9 50%, #5dd3d9 100%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+            z-index: 100;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .logo {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 10px 25px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 30px;
+            letter-spacing: 1px;
+        }
+
+        .logo-bg {
+            position: absolute;
+            left: -30px;
+            top: -25px;
+            width: 100px;
+            height: 100px;
+            background-color: #ff8c42;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        nav a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #5dd3d9;
+        }
+
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .orange-sidebar {
+            width: 340px;
+            background-color: #ff8c42;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-content h2 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar-content p {
+            color: white;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: center;
+            opacity: 0.95;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 60px 80px;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+
+        .settings-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .bar {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .bar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .bar-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .bar-icon {
+            font-size: 32px;
+            min-width: 40px;
+        }
+
+        .bar-text {
+            flex: 1;
+        }
+
+        .bar-label {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .bar-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background-color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: #666;
+        }
+
+        .option-btn:hover {
+            border-color: #5dd3d9;
+            color: #5dd3d9;
+        }
+
+        .option-btn.active {
+            background-color: #5dd3d9;
+            border-color: #5dd3d9;
+            color: white;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-switch.active {
+            background-color: #5dd3d9;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(30px);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        .nav-button {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 18px 60px;
+            border: none;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 6px 20px rgba(93, 211, 217, 0.3);
+        }
+
+        .nav-button:hover {
+            background-color: #4ac4ca;
+            transform: translateY(-2px);
+        }
+
+        .save-message {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background-color: #5dd3d9;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .save-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <div class="logo-bg"></div>
+            <div class="logo">NEUROBOOST</div>
+        </div>
+        <nav>
+            <a href="about.html">About Us</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+
+    <div class="save-message" id="saveMessage">✓ Settings saved!</div>
+    
+    <div class="main-container">
+        <div class="orange-sidebar">
+            <div class="sidebar-icon">⚙️</div>
+            <div class="sidebar-content">
+                <h2>Personalized Settings</h2>
+                <p>These settings are automatically calculated based on your assessment responses. Feel free to adjust them to better suit your child's unique learning style and needs.</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <h1>Calculated Settings</h1>
+            <p class="subtitle">Based on your assessment, we've customized these settings. Click any option to adjust.</p>
+
+            <div class="settings-bars">
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">⏱️</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Lesson Duration</div>
+                            <div class="bar-description">Length of each learning session</div>
+                        </div>
+                    </div>
+                    <div class="control-group" id="duration">
+                        <button class="option-btn" data-value="10 min" onclick="selectOption(this, 'duration', 'lessonDuration')">10 min</button>
+                        <button class="option-btn active" data-value="15 min" onclick="selectOption(this, 'duration', 'lessonDuration')">15 min</button>
+                        <button class="option-btn" data-value="20 min" onclick="selectOption(this, 'duration', 'lessonDuration')">20 min</button>
+                        <button class="option-btn" data-value="30 min" onclick="selectOption(this, 'duration', 'lessonDuration')">30 min</button>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">☕</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Break Frequency</div>
+                            <div class="bar-description">How often to take breaks</div>
+                        </div>
+                    </div>
+                    <div class="control-group" id="breaks">
+                        <button class="option-btn" data-value="Every 15 min" onclick="selectOption(this, 'breaks', 'breakFrequency')">Every 15 min</button>
+                        <button class="option-btn active" data-value="Every 20 min" onclick="selectOption(this, 'breaks', 'breakFrequency')">Every 20 min</button>
+                        <button class="option-btn" data-value="Every 30 min" onclick="selectOption(this, 'breaks', 'breakFrequency')">Every 30 min</button>
+                        <button class="option-btn" data-value="Every 45 min" onclick="selectOption(this, 'breaks', 'breakFrequency')">Every 45 min</button>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">🎨</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Sensory Preferences</div>
+                            <div class="bar-description">Visual and audio stimulation level</div>
+                        </div>
+                    </div>
+                    <div class="control-group" id="sensory">
+                        <button class="option-btn active" data-value="Low" onclick="selectOption(this, 'sensory', 'sensoryPreferences')">Low</button>
+                        <button class="option-btn" data-value="Medium" onclick="selectOption(this, 'sensory', 'sensoryPreferences')">Medium</button>
+                        <button class="option-btn" data-value="High" onclick="selectOption(this, 'sensory', 'sensoryPreferences')">High</button>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">📖</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Reading Support</div>
+                            <div class="bar-description">Text-to-speech and visual aids</div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="toggle-switch active" id="readingSupport" onclick="toggleSwitch(this, 'readingSupport')"></div>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">🧠</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Instruction Style</div>
+                            <div class="bar-description">Preferred learning modality</div>
+                        </div>
+                    </div>
+                    <div class="control-group" id="instruction">
+                        <button class="option-btn active" data-value="Visual" onclick="selectOption(this, 'instruction', 'instructionStyle')">Visual</button>
+                        <button class="option-btn" data-value="Auditory" onclick="selectOption(this, 'instruction', 'instructionStyle')">Auditory</button>
+                        <button class="option-btn" data-value="Kinesthetic" onclick="selectOption(this, 'instruction', 'instructionStyle')">Kinesthetic</button>
+                        <button class="option-btn" data-value="Mixed" onclick="selectOption(this, 'instruction', 'instructionStyle')">Mixed</button>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">📋</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Task Breakdown</div>
+                            <div class="bar-description">How detailed step-by-step instructions are</div>
+                        </div>
+                    </div>
+                    <div class="control-group" id="breakdown">
+                        <button class="option-btn" data-value="Simple" onclick="selectOption(this, 'breakdown', 'taskBreakdown')">Simple</button>
+                        <button class="option-btn" data-value="Moderate" onclick="selectOption(this, 'breakdown', 'taskBreakdown')">Moderate</button>
+                        <button class="option-btn active" data-value="Detailed" onclick="selectOption(this, 'breakdown', 'taskBreakdown')">Detailed</button>
+                        <button class="option-btn" data-value="Very Detailed" onclick="selectOption(this, 'breakdown', 'taskBreakdown')">Very Detailed</button>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">🤸</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Movement Breaks</div>
+                            <div class="bar-description">Physical activity integration</div>
+                        </div>
+                    </div>
+                    <div class="control-group" id="movement">
+                        <button class="option-btn" data-value="None" onclick="selectOption(this, 'movement', 'movementBreaks')">None</button>
+                        <button class="option-btn" data-value="Low" onclick="selectOption(this, 'movement', 'movementBreaks')">Low</button>
+                        <button class="option-btn" data-value="Medium" onclick="selectOption(this, 'movement', 'movementBreaks')">Medium</button>
+                        <button class="option-btn active" data-value="High" onclick="selectOption(this, 'movement', 'movementBreaks')">High</button>
+                    </div>
+                </div>
+
+                <div class="bar">
+                    <div class="bar-header">
+                        <span class="bar-icon">🌟</span>
+                        <div class="bar-text">
+                            <div class="bar-label">Reward System</div>
+                            <div class="bar-description">Progress celebration preferences</div>
+                        </div>
+                    </div>
+                    <div class="control-group" id="reward">
+                        <button class="option-btn" data-value="Minimal" onclick="selectOption(this, 'reward', 'rewardSystem')">Minimal</button>
+                        <button class="option-btn" data-value="Moderate" onclick="selectOption(this, 'reward', 'rewardSystem')">Moderate</button>
+                        <button class="option-btn active" data-value="Frequent" onclick="selectOption(this, 'reward', 'rewardSystem')">Frequent</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button class="nav-button" onclick="window.location.href='assessment.html'">Previous</button>
+                <button class="nav-button" onclick="window.location.href='dashboard.html'">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load settings from LocalStorage on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadSettings();
+        });
+
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
+            
+            // Load button selections
+            Object.keys(settings).forEach(key => {
+                if (key === 'readingSupport') {
+                    const toggle = document.getElementById('readingSupport');
+                    if (toggle) {
+                        toggle.classList.toggle('active', settings[key]);
+                    }
+                } else {
+                    const buttons = document.querySelectorAll(`[data-value="${settings[key]}"]`);
+                    buttons.forEach(btn => {
+                        selectOption(btn, btn.closest('.control-group').id, key, false);
+                    });
+                }
+            });
+        }
+
+        function saveSettings(key, value) {
+            const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
+            settings[key] = value;
+            localStorage.setItem('userSettings', JSON.stringify(settings));
+            
+            // Show save message
+            const message = document.getElementById('saveMessage');
+            message.classList.add('show');
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 2000);
+        }
+
+        function selectOption(button, category, settingKey, save = true) {
+            // Remove active class from all buttons in the same category
+            const parent = button.parentElement;
+            parent.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Save to LocalStorage
+            if (save) {
+                const value = button.getAttribute('data-value');
+                saveSettings(settingKey, value);
+            }
+        }
+
+        function toggleSwitch(toggle, settingKey) {
+            toggle.classList.toggle('active');
+            
+            // Save to LocalStorage
+            const value = toggle.classList.contains('active');
+            saveSettings(settingKey, value);
+        }
+    </script>
+</body>
+</html>

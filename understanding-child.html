@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroboost - Understanding Your Child</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5e6dc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff8c42 0%, #ff8c42 50%, #5dd3d9 50%, #5dd3d9 100%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+            z-index: 100;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .logo {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 10px 25px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 30px;
+            letter-spacing: 1px;
+        }
+
+        .logo-bg {
+            position: absolute;
+            left: -30px;
+            top: -25px;
+            width: 100px;
+            height: 100px;
+            background-color: #ff8c42;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            margin-left: 35px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 10px 0;
+        }
+
+        .dropdown-toggle:hover {
+            color: #5dd3d9;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            z-index: 1000;
+            margin-top: 5px;
+            padding: 5px 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-content a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-content a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        nav a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #5dd3d9;
+        }
+
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+
+        .sidebar {
+            width: 240px;
+            background-color: #f5c4a0;
+            padding: 0;
+        }
+
+        .sidebar-item {
+            padding: 18px 30px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.2s;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-item:hover {
+            background-color: rgba(255, 140, 66, 0.2);
+        }
+
+        .sidebar-item.active {
+            background-color: rgba(255, 140, 66, 0.3);
+            border-left-color: #ff8c42;
+        }
+
+        .sidebar-item.expandable {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .sidebar-submenu.open {
+            max-height: 200px;
+        }
+
+        .sidebar-item.indent {
+            padding-left: 50px;
+            font-size: 14px;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 50px 80px;
+            max-width: 1200px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .intro-section {
+            background-color: #b8e6e8;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            font-size: 17px;
+            color: #555;
+        }
+
+        .info-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .info-card h2 {
+            font-size: 32px;
+            color: #ff8c42;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .info-card p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .info-card ul {
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .info-card li {
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background-color: #fff3e6;
+            border-left: 4px solid #ff8c42;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <div class="logo-bg"></div>
+            <div class="logo">NEUROBOOST</div>
+        </div>
+        <nav>
+            <div class="dropdown">
+                <span class="dropdown-toggle">Charlie ▶</span>
+                <div class="dropdown-content">
+                    <a href="#" onclick="switchStudent('Charlie'); return false;">Charlie</a>
+                    <a href="#" onclick="switchStudent('Thomas'); return false;">Thomas</a>
+                    <a href="#" onclick="switchStudent('Jess'); return false;">Jess</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <span class="dropdown-toggle">Resource View ▶</span>
+                <div class="dropdown-content">
+                    <a href="dashboard.html">Resource View</a>
+                    <a href="week-view.html">Week View</a>
+                    <a href="#" onclick="alert('Progress tracking coming soon!'); return false;">Progress</a>
+                </div>
+            </div>
+            <a href="about.html">About Us</a>
+            <a href="settings.html">Alter Preferences</a>
+            <a href="add-student.html">Add Student</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="sidebar-item" onclick="window.location.href='dashboard.html'">Dashboard</div>
+            <div class="sidebar-item active">Understanding Your Child</div>
+            <div class="sidebar-item expandable" onclick="toggleSubmenu(event)">
+                <span>Courses</span>
+                <span id="courses-arrow">▶</span>
+            </div>
+            <div class="sidebar-submenu" id="courses-submenu">
+                <div class="sidebar-item indent" onclick="alert('Pre-Algebra course content coming soon!')">Pre-Algebra</div>
+                <div class="sidebar-item indent" onclick="alert('American History course content coming soon!')">American History</div>
+                <div class="sidebar-item indent" onclick="alert('Literature course content coming soon!')">Literature</div>
+            </div>
+            <div class="sidebar-item" onclick="window.location.href='week-view.html'">Plan My Week</div>
+        </div>
+
+        <div class="content-area">
+            <h1>Understanding Your Child</h1>
+
+            <div class="intro-section">
+                Every child learns differently, and neurodivergent learners often have unique strengths and challenges. This guide will help you better understand your child's learning style, needs, and how to support them on their educational journey.
+            </div>
+
+            <div class="info-card">
+                <h2>What is Neurodivergence?</h2>
+                <p>Neurodivergence refers to variations in the human brain regarding sociability, learning, attention, mood, and other mental functions. It's not a deficit, it's a difference. Neurodivergent individuals often think, learn, and process information in unique ways.</p>
+                
+                <h3>Common Types of Neurodivergence:</h3>
+                <ul>
+                    <li><strong>ADHD (Attention-Deficit/Hyperactivity Disorder)</strong> - Characterized by differences in attention, impulse control, and activity levels</li>
+                    <li><strong>Autism Spectrum Disorder (ASD)</strong> - Involves differences in social communication, sensory processing, and thinking patterns</li>
+                    <li><strong>Dyslexia</strong> - Affects reading, writing, and spelling despite normal intelligence</li>
+                    <li><strong>Dyscalculia</strong> - Impacts mathematical understanding and number sense</li>
+                    <li><strong>Dysgraphia</strong> - Affects writing abilities, handwriting, and fine motor skills</li>
+                    <li><strong>Sensory Processing Differences</strong> - Variations in how sensory information is received and processed</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2>Understanding Your Child's Learning Style</h2>
+                <p>Based on your assessment, we've identified key areas where your child may benefit from specialized support. Remember that every child is unique, and these are general guidelines to help you better understand their needs.</p>
+
+                <h3>Visual Learners</h3>
+                <p>Visual learners benefit from seeing information presented graphically. They often excel when concepts are illustrated through diagrams, charts, videos, and written instructions.</p>
+                <div class="highlight-box">
+                    <p><strong>Tip:</strong> Use color-coding, mind maps, and visual schedules to help your child organize and understand information.</p>
+                </div>
+
+                <h3>Auditory Learners</h3>
+                <p>Auditory learners thrive when information is presented through sound. They may benefit from verbal instructions, discussions, audiobooks, and verbal repetition.</p>
+                <div class="highlight-box">
+                    <p><strong>Tip:</strong> Encourage your child to read aloud, use text-to-speech features, and discuss concepts verbally.</p>
+                </div>
+
+                <h3>Kinesthetic Learners</h3>
+                <p>Kinesthetic learners need to move and engage physically with learning materials. They learn best through hands-on activities, experiments, and movement breaks.</p>
+                <div class="highlight-box">
+                    <p><strong>Tip:</strong> Incorporate movement into learning. Use manipulatives, take activity breaks, and allow standing or fidgeting during lessons.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2>Supporting Your Child at Home</h2>
+                
+                <h3>Create a Supportive Learning Environment</h3>
+                <ul>
+                    <li>Minimize distractions and sensory overload in the learning space</li>
+                    <li>Provide consistent routines and clear expectations</li>
+                    <li>Break tasks into smaller, manageable steps</li>
+                    <li>Celebrate small victories and progress</li>
+                    <li>Allow for frequent breaks and movement</li>
+                </ul>
+
+                <h3>Communicate Effectively</h3>
+                <ul>
+                    <li>Use clear, simple language and visual supports</li>
+                    <li>Give one instruction at a time</li>
+                    <li>Allow extra processing time for responses</li>
+                    <li>Validate feelings and emotions</li>
+                    <li>Focus on strengths, not just challenges</li>
+                </ul>
+
+                <h3>Work with Educators</h3>
+                <ul>
+                    <li>Share your child's assessment results with teachers</li>
+                    <li>Discuss accommodations that work at home</li>
+                    <li>Maintain open communication about progress</li>
+                    <li>Advocate for your child's needs</li>
+                    <li>Collaborate on consistent strategies across environments</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2>Remember: Your Child's Strengths</h2>
+                <p>Neurodivergent children often have remarkable strengths alongside their challenges. These may include:</p>
+                <ul>
+                    <li>Creative and innovative thinking</li>
+                    <li>Strong attention to detail</li>
+                    <li>Unique problem-solving approaches</li>
+                    <li>Deep focus on areas of interest</li>
+                    <li>Exceptional memory in certain areas</li>
+                    <li>Original perspectives and ideas</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p><strong>Remember:</strong> Every child is on their own unique journey. Celebrate progress, embrace differences, and provide unconditional support. With the right tools and understanding, every child can thrive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchStudent(studentName) {
+            localStorage.setItem('currentStudent', studentName);
+            // Update page title if needed
+            const title = document.querySelector('h1');
+            if (studentName === 'Charlie') {
+                title.textContent = 'Understanding Your Child';
+            } else {
+                title.textContent = 'Understanding Your Mind';
+            }
+        }
+
+        function toggleSubmenu(event) {
+            event.stopPropagation();
+            const submenu = document.getElementById('courses-submenu');
+            const arrow = document.getElementById('courses-arrow');
+            
+            submenu.classList.toggle('open');
+            arrow.textContent = submenu.classList.contains('open') ? '▼' : '▶';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroboost - Assessment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5e6dc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff8c42 0%, #ff8c42 50%, #5dd3d9 50%, #5dd3d9 100%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .logo {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 10px 25px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 30px;
+            letter-spacing: 1px;
+        }
+
+        .logo-bg {
+            position: absolute;
+            left: -30px;
+            top: -25px;
+            width: 100px;
+            height: 100px;
+            background-color: #ff8c42;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        nav a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #5dd3d9;
+        }
+
+        .assessment-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 60px 40px;
+        }
+
+        .assessment-grid {
+            background-color: white;
+            padding: 60px 80px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .grid-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        .grid-table tr:first-child td {
+            background-color: #b8e6e8;
+            height: 80px;
+        }
+
+        .grid-table tr:not(:first-child) td:first-child {
+            background-color: #b8e6e8;
+            width: 200px;
+            padding: 0 30px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .grid-table tr:not(:first-child) td:not(:first-child) {
+            background-color: #e8f5f5;
+            text-align: center;
+            padding: 30px;
+            transition: background-color 0.2s;
+        }
+
+        .grid-table tr:nth-child(even) td:not(:first-child) {
+            background-color: #f0f9f9;
+        }
+
+        .circle {
+            width: 45px;
+            height: 45px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+        }
+
+        .circle:hover {
+            transform: scale(1.1);
+            border-color: #5dd3d9;
+        }
+
+        .circle.selected {
+            background-color: #5dd3d9;
+            border-color: #5dd3d9;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding: 0 40px;
+        }
+
+        .nav-button {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 18px 60px;
+            border: none;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 6px 20px rgba(93, 211, 217, 0.3);
+        }
+
+        .nav-button:hover {
+            background-color: #4ac4ca;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <div class="logo-bg"></div>
+            <div class="logo">NEUROBOOST</div>
+        </div>
+        <nav>
+            <a href="about.html">About Us</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    
+    <div class="assessment-container">
+        <div>
+            <div class="assessment-grid">
+                <table class="grid-table">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                        <td><div class="circle" onclick="toggleCircle(this)"></div></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="button-container">
+                <button class="nav-button" onclick="window.location.href='math-courses.html'">Previous</button>
+                <button class="nav-button" onclick="window.location.href='settings.html'">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCircle(circle) {
+            circle.classList.toggle('selected');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroboost - About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5e6dc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff8c42 0%, #ff8c42 50%, #5dd3d9 50%, #5dd3d9 100%);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .logo {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 10px 25px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 30px;
+            letter-spacing: 1px;
+        }
+
+        .logo-bg {
+            position: absolute;
+            left: -30px;
+            top: -25px;
+            width: 100px;
+            height: 100px;
+            background-color: #ff8c42;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        nav a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #5dd3d9;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 80px 40px 60px;
+            background-color: #f5e6dc;
+        }
+
+        .hero-section h1 {
+            font-size: 56px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .info-card {
+            background-color: white;
+            padding: 50px 60px;
+            margin-bottom: 40px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .info-card h2 {
+            font-size: 36px;
+            color: #ff8c42;
+            margin-bottom: 25px;
+        }
+
+        .info-card p {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .info-card ul {
+            margin-left: 30px;
+            margin-top: 20px;
+        }
+
+        .info-card li {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .team-section {
+            background-color: #b8e6e8;
+            padding: 60px 40px;
+            margin-top: 40px;
+            border-radius: 25px;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            background-color: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .team-member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #bbb;
+            border-radius: 50%;
+            position: absolute;
+            top: 45px;
+        }
+
+        .profile-shoulders {
+            width: 120px;
+            height: 80px;
+            background-color: #bbb;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .team-member h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .team-member .title {
+            font-size: 16px;
+            color: #5dd3d9;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .btn {
+            background-color: #5dd3d9;
+            color: white;
+            padding: 18px 60px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(93, 211, 217, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #4ac4ca;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <div class="logo-bg"></div>
+            <div class="logo">NEUROBOOST</div>
+        </div>
+        <nav>
+            <a href="about.html">About Us</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    
+    <div class="hero-section">
+        <h1>About Neuroboost</h1>
+        <p>We're dedicated to creating educational resources that adapt to every child's unique learning needs, making quality education accessible and inclusive for all.</p>
+    </div>
+
+    <div class="content-section">
+        <div class="info-card">
+            <h2>Our Story</h2>
+            <p>Neuroboost was founded with a simple yet powerful vision: every child deserves an education that's tailored to their individual needs. We recognized that traditional one-size-fits-all education wasn't serving all students, particularly those with neurodivergent learning styles.</p>
+            <p>Our team of educators, researchers, and developers came together to create a comprehensive platform that combines the latest research in neurodevelopment with innovative teaching methods. We're committed to breaking down barriers to learning and ensuring that every child has the opportunity to reach their full potential.</p>
+        </div>
+
+        <div class="info-card">
+            <h2>Our Mission</h2>
+            <p>We aim to create resources for every type of student, whatever their individual needs. Our mission includes:</p>
+            <ul>
+                <li>Researching and studying all categories of neurodivergence to provide specialized resources</li>
+                <li>Developing adaptive learning materials that respond to each child's unique learning style</li>
+                <li>Supporting parents and teachers with tools and knowledge to better understand their students</li>
+                <li>Promoting inclusivity and accessibility in education</li>
+                <li>Continuously improving our platform based on the latest educational research</li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h2>Our Commitment to Research</h2>
+            <p>We portion 30% of all profit towards neurodivergence and child development research. We know that there is still much to learn about the human brain and the best approaches to child education.</p>
+            <p>By investing in research, we strive to lead the industry in inclusivity and evidence-based educational practices. Our research partnerships with leading universities and institutions ensure that our platform remains at the cutting edge of educational innovation.</p>
+        </div>
+
+        <div class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-photo">
+                        <div class="profile-icon"></div>
+                        <div class="profile-shoulders"></div>
+                    </div>
+                    <h3>Keneila Hatch</h3>
+                    <p class="title">CEO</p>
+                    <p>Chief Executive Officer</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-photo">
+                        <div class="profile-icon"></div>
+                        <div class="profile-shoulders"></div>
+                    </div>
+                    <h3>Peyton Simmons</h3>
+                    <p class="title">CTO</p>
+                    <p>Chief Technology Officer</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-photo">
+                        <div class="profile-icon"></div>
+                        <div class="profile-shoulders"></div>
+                    </div>
+                    <h3>Spencer Hales</h3>
+                    <p class="title">CMO</p>
+                    <p>Chief Marketing Officer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Ready to Get Started?</h2>
+        <a href="register.html" class="btn">Join Neuroboost Today</a>
+    </div>
+</body>
+</html>
